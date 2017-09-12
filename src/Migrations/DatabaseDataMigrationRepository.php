@@ -39,8 +39,8 @@ class DatabaseDataMigrationRepository extends DMR implements MigrationRepository
     {
         return $this->table()
                 ->orderBy('batch', 'asc')
-                ->orderBy('data_migration', 'asc')
-                ->pluck('data_migration')->all();
+                ->orderBy('migration', 'asc')
+                ->pluck('migration')->all();
     }
 
     /**
@@ -53,7 +53,7 @@ class DatabaseDataMigrationRepository extends DMR implements MigrationRepository
     {
         $query = $this->table()->where('batch', '>=', '1');
 
-        return $query->orderBy('data_migration', 'desc')->take($steps)->get()->all();
+        return $query->orderBy('migration', 'desc')->take($steps)->get()->all();
     }
 
     /**
@@ -65,7 +65,7 @@ class DatabaseDataMigrationRepository extends DMR implements MigrationRepository
     {
         $query = $this->table()->where('batch', $this->getLastBatchNumber());
 
-        return $query->orderBy('data_migration', 'desc')->get()->all();
+        return $query->orderBy('migration', 'desc')->get()->all();
     }
 
     /**
@@ -77,7 +77,7 @@ class DatabaseDataMigrationRepository extends DMR implements MigrationRepository
      */
     public function log($file, $batch)
     {
-        $record = ['data_migration' => $file, 'batch' => $batch];
+        $record = ['migration' => $file, 'batch' => $batch];
 
         $this->table()->insert($record);
     }
@@ -90,7 +90,7 @@ class DatabaseDataMigrationRepository extends DMR implements MigrationRepository
      */
     public function delete($migration)
     {
-        $this->table()->where('data_migration', $migration->migration)->delete();
+        $this->table()->where('migration', $migration->migration)->delete();
     }
 
     /**
@@ -127,7 +127,7 @@ class DatabaseDataMigrationRepository extends DMR implements MigrationRepository
             // migrations have actually run for the application. We'll create the
             // table to hold the migration file's path as well as the batch ID.
             $table->increments('id');
-            $table->string('data_migration');
+            $table->string('migration');
             $table->integer('batch');
         });
     }
