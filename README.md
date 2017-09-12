@@ -21,3 +21,6 @@ composer require lbadger/illuminate-data-migrations
     $app['config']['database.data-migrations'] = 'data_migrations';
     $app->register(\Lbadger\Database\Providers\ArtisanServiceProvider::class);
     $app->register(\Lbadger\Database\Providers\DataMigrationServiceProvider::class);
+
+
+* Note: You cannot have the same data migration class name as a normal migration
