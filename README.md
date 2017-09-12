@@ -4,9 +4,20 @@ Creating data migrations for Laravel. This keeps data out of migrations and leav
 ## Install ##
 composer require lbadger/illuminate-data-migrations
 
+
+# Laravel #
+
 ## config/database.php ##
     'data-migrations' => 'data_migrations',
     
 ## config/app.php ##
-        \Lbadger\Database\Providers\ArtisanServiceProvider::class,
-        \Lbadger\Database\Providers\DataMigrationServiceProvider::class,
+    \Lbadger\Database\Providers\ArtisanServiceProvider::class,
+    \Lbadger\Database\Providers\DataMigrationServiceProvider::class,
+
+
+# Lumen #
+
+## bootstrap/app.php ##
+    $app['config']['database.data-migrations'] = 'data_migrations';
+    $app->register(\Lbadger\Database\Providers\ArtisanServiceProvider::class);
+    $app->register(\Lbadger\Database\Providers\DataMigrationServiceProvider::class);
