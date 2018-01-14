@@ -4,7 +4,9 @@ Creating data migrations for Laravel. This keeps data out of migrations and leav
 ## Install ##
 composer require lbadger/illuminate-data-migrations
 
-
+## Data Migration Folder ##
+Create a folder called "data_migrations" in the /database folder
+    
 # Laravel #
 
 ## config/database.php ##
