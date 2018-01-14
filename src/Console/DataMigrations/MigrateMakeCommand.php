@@ -127,5 +127,7 @@ class MigrateMakeCommand extends BaseCommand
         if (! $this->files->isDirectory(dirname($path))) {
             $this->files->makeDirectory(dirname($path), 0777, true, true);
         }
+
+        return $path;
     }
 }
