@@ -4,7 +4,7 @@ namespace Lbadger\Database\Console\DataMigrations;
 
 use Illuminate\Support\Composer;
 use Illuminate\Database\Migrations\MigrationCreator;
-use Illuminate\Filesystem;
+use Illuminate\Filesystem\Filesystem;
 
 class MigrateMakeCommand extends BaseCommand
 {
