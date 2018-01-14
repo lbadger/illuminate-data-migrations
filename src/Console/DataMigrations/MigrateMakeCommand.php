@@ -51,7 +51,6 @@ class MigrateMakeCommand extends BaseCommand
 
         $this->creator = $creator;
         $this->composer = $composer;
-
     }
 
     /**
@@ -116,6 +115,5 @@ class MigrateMakeCommand extends BaseCommand
         }
 
         return parent::getMigrationPath();
-
     }
 }
