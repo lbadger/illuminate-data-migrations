@@ -4,7 +4,6 @@ namespace Lbadger\Database\Console\DataMigrations;
 
 use Illuminate\Support\Composer;
 use Illuminate\Database\Migrations\MigrationCreator;
-use Illuminate\Filesystem\Filesystem;
 
 class MigrateMakeCommand extends BaseCommand
 {
@@ -40,13 +39,6 @@ class MigrateMakeCommand extends BaseCommand
     protected $composer;
 
     /**
-     * The Filesystem instance.
-     *
-     * @var Filesystem
-     */
-    protected $files;
-
-    /**
      * Create a new migration install command instance.
      *
      * @param  \Illuminate\Database\Migrations\MigrationCreator  $creator
@@ -59,7 +51,7 @@ class MigrateMakeCommand extends BaseCommand
 
         $this->creator = $creator;
         $this->composer = $composer;
-        $this->files = new Filesystem();
+
     }
 
     /**
@@ -119,15 +111,11 @@ class MigrateMakeCommand extends BaseCommand
      */
     protected function getMigrationPath()
     {
-        $path = parent::getMigrationPath();
         if (! is_null($targetPath = $this->input->getOption('path'))) {
-            $path = $this->laravel->basePath().'/'.$targetPath;
+            return $this->laravel->basePath().'/'.$targetPath;
         }
 
-        if (! $this->files->isDirectory(dirname($path))) {
-            $this->files->makeDirectory(dirname($path), 0777, true, true);
-        }
+        return parent::getMigrationPath();
 
-        return $path;
     }
 }
