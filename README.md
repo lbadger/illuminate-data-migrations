@@ -13,6 +13,8 @@ Create a folder called "data_migrations" in the /database folder
     'data-migrations' => 'data_migrations',
     
 ## config/app.php ##
+Add these to the 'providers' array
+
     \Lbadger\Database\Providers\ArtisanServiceProvider::class,
     \Lbadger\Database\Providers\DataMigrationServiceProvider::class,
 
