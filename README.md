@@ -26,5 +26,7 @@ Add these to the 'providers' array
     $app->register(\Lbadger\Database\Providers\ArtisanServiceProvider::class);
     $app->register(\Lbadger\Database\Providers\DataMigrationServiceProvider::class);
 
+## Custom Stub ##
+    If you would like to use custom stubs, you need to put your stub in the database/stubs directory with the suffix of .stub
 
 * Note: You cannot have the same data migration class name as a normal migration
