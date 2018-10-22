@@ -3,7 +3,6 @@
 namespace Lbadger\Database\Console\DataMigrations;
 
 use Illuminate\Support\Composer;
-use Illuminate\Database\Migrations\MigrationCreator;
 
 class MigrateMakeCommand extends BaseCommand
 {
@@ -15,7 +14,8 @@ class MigrateMakeCommand extends BaseCommand
     protected $signature = 'make:data-migration {name : The name of the migration.}
         {--create= : The table to be created.}
         {--table= : The table to data-migrate.}
-        {--path= : The location where the migration file should be created.}';
+        {--path= : The location where the migration file should be created.}
+        {--stub= : The stub you would like to use from your database/stubs folder.}';
 
     /**
      * The console command description.
@@ -27,7 +27,7 @@ class MigrateMakeCommand extends BaseCommand
     /**
      * The migration creator instance.
      *
-     * @var \Illuminate\Database\Migrations\MigrationCreator
+     * @var \Lbadger\Database\Console\DataMigrations\DataMigrationCreator
      */
     protected $creator;
 
@@ -41,11 +41,11 @@ class MigrateMakeCommand extends BaseCommand
     /**
      * Create a new migration install command instance.
      *
-     * @param  \Illuminate\Database\Migrations\MigrationCreator  $creator
+     * @param  \Lbadger\Database\Console\DataMigrations\DataMigrationCreator  $creator
      * @param  \Illuminate\Support\Composer  $composer
      * @return void
      */
-    public function __construct(MigrationCreator $creator, Composer $composer)
+    public function __construct(DataMigrationCreator $creator, Composer $composer)
     {
         parent::__construct();
 
@@ -76,6 +76,10 @@ class MigrateMakeCommand extends BaseCommand
             $table = $create;
 
             $create = true;
+        }
+
+        if (!empty($this->input->getOption('stub'))) {
+            $this->creator->setCustomStub($this->input->getOption('stub'));
         }
 
         // Now we are ready to write the migration out to disk. Once we've written

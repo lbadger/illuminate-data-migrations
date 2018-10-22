@@ -5,6 +5,7 @@ namespace Lbadger\Database\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Database\Migrations\MigrationCreator;
+use Lbadger\Database\Console\DataMigrations\DataMigrationCreator;
 use Lbadger\Database\Migrations\DatabaseDataMigrationRepository;
 
 class DataMigrationServiceProvider extends ServiceProvider
@@ -69,7 +70,7 @@ class DataMigrationServiceProvider extends ServiceProvider
     protected function registerCreator()
     {
         $this->app->singleton('data-migration.creator', function ($app) {
-            return new MigrationCreator($app['files']);
+            return new DataMigrationCreator($app['files']);
         });
     }
 
