@@ -2,8 +2,7 @@
   "name": "lbadger/illuminate-data-migrations",
   "description": "Data Migrations for Laravel",
   "require": {
-    "illuminate/support": "~5.5",
-    "illuminate/database": "~5.5"
+    "laravel/lumen-framework": "^6.0"
   },
   "autoload": {
     "psr-4": {
